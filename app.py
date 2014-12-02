@@ -30,7 +30,7 @@ def index():
 # returns info for all movies from the db
 @app.route('/api/titles')
 def all():
-	return jsonify({'titles':[movie[Title] for movie in movie_data]})
+	return jsonify({'titles':[movie['Title'] for movie in movie_data.values()]})
 
 # returns info for given movie
 @app.route('/api/movie/<title>')
