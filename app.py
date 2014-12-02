@@ -9,8 +9,9 @@ movie_data = {}
 with open('sfmovies.csv') as csvfile:
 	rdr = csv.DictReader(csvfile)
 	for row in rdr:
-		if row['Title'] not in movie_data:
-			movie_data[row['Title']] = {
+		title_norm = row['Title'].lower()
+		if title_norm not in movie_data:
+			movie_data[title_norm] = {
 				'Title': row['Title'],
 				'Release Year': row['Release Year'],
 				'Director': row['Director'],
@@ -18,7 +19,7 @@ with open('sfmovies.csv') as csvfile:
 				'Locations':[{'Location':row['Locations'], 'Fun Facts':row['Fun Facts']}]
 			}
 		else:
-			movie_data[row['Title']]['Locations'].append({'Location':row['Locations'], 'Fun Facts':row['Fun Facts']})
+			movie_data[title_norm]['Locations'].append({'Location':row['Locations'], 'Fun Facts':row['Fun Facts']})
 
 
 @app.route('/')
@@ -29,7 +30,7 @@ def index():
 # returns info for all movies from the db
 @app.route('/api/titles')
 def all():
-	return jsonify({'titles':movie_data.keys()})
+	return jsonify({'titles':[movie[Title] for movie in movie_data]})
 
 # returns info for given movie
 @app.route('/api/movie/<title>')

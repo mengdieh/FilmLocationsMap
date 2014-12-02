@@ -41,6 +41,14 @@ var locations = new LocationList();
 
 // top-level view of the map
 var AppView = Backbone.View.extend({
+  initialize: function() {
+
+  },
+
+  render: function() {
+
+  }
+
 
 })
 
@@ -51,13 +59,13 @@ var Router = Backbone.Router.extend({
   routes: {
     "movie:query": "markMovie",
     "": "markAll"
-  }
+  },
   initialize: function() {
-    appView.render();
-  }
+    //appView.render();
+  },
   markAll: function() {
     
-  }
+  },
   markMovie: function() {
 
   }
@@ -68,11 +76,11 @@ var router = new Router();
 //Backbone.history.start();
         
 /* google maps -----------------------------------------------------*/
+
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function initialize() {
 
-  /* position Amsterdam */
   var latlng1 = new google.maps.LatLng(52.3731, 4.8922);
   var latlng2 = new google.maps.LatLng(59.32522, 18.07002);
 
@@ -111,6 +119,7 @@ function initialize() {
   marker2.setMap(map);
   map.fitBounds(bounds);
 };
+
 /* end google maps -----------------------------------------------------*/
         
 });
