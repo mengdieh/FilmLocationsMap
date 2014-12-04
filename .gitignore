@@ -1,6 +1,7 @@
 env
 *.pyc
 *.DS_Store
+__init__.py
 app-test.py
 locations.csv
 sfmovieswithlatlng.csv
